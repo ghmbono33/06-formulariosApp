@@ -1,0 +1,85 @@
+<h2>Template: Básicos</h2>
+<hr />
+<div class="row">
+  <div class="col">
+    <form (ngSubmit)="guardar()" #miFormulario="ngForm">
+      <div class="mb-3 row">
+        <!-- Producto -->
+        <label class="col-sm-3 col-form-label">Producto</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            [ngModel]="valoresPorDefecto.producto"
+            name="producto"
+            placeholder="Nombre del producto"
+            required
+            minlength="3"
+          />
+          <span class="form-text text-danger" *ngIf="nombreNoValido()"
+            >Debe de ser de 3 letras</span
+          >
+        </div>
+      </div>
+      <!-- Precio -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Precio</label>
+        <div class="col-sm-9">
+          <input
+            type="number"
+            [ngModel]="valoresPorDefecto.precio"
+            name="precio"
+            class="form-control"
+            placeholder="Precio del producto"
+            required
+          />
+          <span class="form-text text-danger" *ngIf="precioNoValido()"
+            >El precio debe de ser mayor 0 igual a 0</span
+          >
+        </div>
+      </div>
+      <!-- Existencias, la controlamos con DIRECTIVAS  -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Existencias</label>
+        <div class="col-sm-9">
+          <input
+            type="number"
+            [ngModel]="valoresPorDefecto.existencias"
+            name="existencias"
+            class="form-control"
+            placeholder="Existencias del producto"
+            customMin
+            [minimo]="0"
+            required
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <!-- Importante el disabled, si no es válido el formulario no estará habilitado el botón -->
+          <button
+            type="submit"
+            class="btn btn-primary float-end"
+            [disabled]="miFormulario.invalid"
+          >
+            Guardar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <span>Valid</span>
+    <pre>{{ miFormulario.valid }}</pre>
+    <span>Pristine</span>
+    <pre>{{ miFormulario.pristine }}</pre>
+    <span>Touched</span>
+    <pre>{{ miFormulario.touched }}</pre>
+    <span>Value</span>
+    <pre>{{ miFormulario.value | json }}</pre>
+    <span>Directives</span>
+    <pre>{{ miFormulario.controls["existencias"]?.errors | json }}</pre>
+  </div>
+</div>
