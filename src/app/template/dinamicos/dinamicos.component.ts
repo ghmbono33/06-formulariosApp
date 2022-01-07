@@ -20,7 +20,7 @@ export class DinamicosComponent implements OnInit {
   @ViewChild('miFormulario') miFormulario!: NgForm;
 
   persona: Persona = {
-    nombre: 'Manolo',
+    nombre: '',
     favoritos: [
       {
         id: 1,
@@ -32,6 +32,9 @@ export class DinamicosComponent implements OnInit {
       },
     ],
   };
+
+  favorito!: Favorito;
+  mascota: string = '';
   constructor() {}
 
   ngOnInit(): void {}
@@ -40,7 +43,12 @@ export class DinamicosComponent implements OnInit {
   }
   nombreNoValido() {
     return (
-      this.miFormulario?.form.controls['nombre']?.value.trim().length === 0 &&
+      //Ambas formas son correctas:
+
+      // this.miFormulario?.form.controls['nombre']?.value.trim().length === 0 &&
+      // this.miFormulario?.form.controls['nombre']?.touched
+
+      this.persona.nombre.trim().length === 0 &&
       this.miFormulario?.form.controls['nombre']?.touched
     );
   }
@@ -49,9 +57,17 @@ export class DinamicosComponent implements OnInit {
   }
   agregar() {
     // Con Math.max(...this.persona.favoritos.map(el => el.id)) conseguimos obtener el nº de mayor id
-    this.persona.favoritos.push({
+    this.favorito = {
       id: Math.max(...this.persona.favoritos.map((el) => el.id)) + 1,
-      nombre: this.miFormulario?.form.controls['agregar']?.value,
-    });
+      nombre: this.mascota,
+    };
+    this.persona.favoritos.push(this.favorito);
+
+    //Ambas son válidas
+
+    // this.persona.favoritos.push({
+    //   id: Math.max(...this.persona.favoritos.map((el) => el.id)) + 1,
+    //   nombre: this.miFormulario?.form.controls['agregar']?.value,
+    // });
   }
 }

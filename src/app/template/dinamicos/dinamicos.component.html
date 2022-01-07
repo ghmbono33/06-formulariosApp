@@ -10,7 +10,7 @@
           <input
             type="text"
             class="form-control"
-            [ngModel]="persona.nombre"
+            [(ngModel)]="persona.nombre"
             name="nombre"
             placeholder="Nombre del nombre"
             required
@@ -22,15 +22,16 @@
         </div>
       </div>
       <div class="mb-3 row">
-        <label class="col-sm-3 col-form-label">Agregar</label>
+        <label class="col-sm-3 col-form-label">Agregar Mascota</label>
         <div class="col-sm-9">
           <div class="input-group mb-3">
             <input
-              ngModel
+              [(ngModel)]="mascota"
               type="text"
-              name="agregar"
               class="form-control"
+              name="mascota"
               placeholder="Agregar mascota favorita"
+              (keyup.enter)="agregar()"
             />
             <button
               type="button"

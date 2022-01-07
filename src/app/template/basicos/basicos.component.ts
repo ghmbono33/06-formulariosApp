@@ -1,5 +1,4 @@
-import { invalid } from '@angular/compiler/src/render3/view/util';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -7,7 +6,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './basicos.component.html',
   styles: [],
 })
-export class BasicosComponent implements OnInit {
+export class BasicosComponent {
   //Con viewChild apuntamos a la referencia que hemos definido en el HTML
   @ViewChild('miFormulario') miFormulario!: NgForm;
 
@@ -16,9 +15,7 @@ export class BasicosComponent implements OnInit {
     precio: 33,
     existencias: 26,
   };
-  constructor() {}
 
-  ngOnInit(): void {}
   guardar() {
     console.log(this.miFormulario);
     //Resetea el formulario y establece valores por defecto
