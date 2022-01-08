@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 interface MenuItem {
   texto: string;
@@ -25,6 +25,10 @@ export class SidemenuComponent {
     { texto: 'Básicos', ruta: './reactive/basicos' },
     { texto: 'Dinámicos', ruta: './reactive/dinamicos' },
     { texto: 'Switches', ruta: './reactive/switches' },
+  ];
+  authMenu: MenuItem[] = [
+    { texto: 'Registro', ruta: './auth/registro' },
+    { texto: 'Login', ruta: './auth/login' },
   ];
   constructor() {}
 }

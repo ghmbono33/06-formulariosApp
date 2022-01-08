@@ -11,11 +11,23 @@
   </li>
 </ul>
 <hr />
-<h2>Template</h2>
+<h2>Reactive</h2>
 
 <ul class="list-group">
   <li
     *ngFor="let item of reactiveMenu"
+    [routerLink]="item.ruta"
+    routerLinkActive="active"
+    class="list-group-item"
+  >
+    {{ item.texto }}
+  </li>
+</ul>
+<hr />
+<h2>Validaciones</h2>
+<ul class="list-group">
+  <li
+    *ngFor="let item of authMenu"
     [routerLink]="item.ruta"
     routerLinkActive="active"
     class="list-group-item"

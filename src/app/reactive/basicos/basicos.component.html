@@ -2,7 +2,7 @@
 <hr />
 <div class="row">
   <div class="col">
-    <form>
+    <form [formGroup]="miFormulario" (ngSubmit)="guardar()">
       <div class="mb-3 row">
         <!-- Producto -->
         <label class="col-sm-3 col-form-label">Producto</label>
@@ -11,8 +11,11 @@
             type="text"
             class="form-control"
             placeholder="Nombre del producto"
+            formControlName="nombre"
           />
-          <span class="form-text text-danger">Debe de ser de 3 letras</span>
+          <span *ngIf="campoNoValido('nombre')" class="form-text text-danger"
+            >Debe de ser de al menos 3 letras</span
+          >
         </div>
       </div>
       <!-- Precio -->
@@ -23,9 +26,10 @@
             type="number"
             class="form-control"
             placeholder="Precio del producto"
+            formControlName="precio"
           />
-          <span class="form-text text-danger"
-            >El precio debe de ser mayor 0 igual a 0</span
+          <span class="form-text text-danger" *ngIf="campoNoValido('precio')"
+            >El precio debe de ser mayor o igual a 0</span
           >
         </div>
       </div>
@@ -37,7 +41,13 @@
             type="number"
             class="form-control"
             placeholder="Existencias del producto"
+            formControlName="existencias"
           />
+          <span
+            class="form-text text-danger"
+            *ngIf="campoNoValido('existencias')"
+            >El existencias debe de ser mayor o igual a 0</span
+          >
         </div>
       </div>
       <div class="row">
@@ -51,7 +61,7 @@
     </form>
   </div>
 </div>
-<!-- <div class="row">
+<div class="row">
   <div class="col">
     <span>Valid</span>
     <pre>{{ miFormulario.valid }}</pre>
@@ -61,7 +71,7 @@
     <pre>{{ miFormulario.touched }}</pre>
     <span>Value</span>
     <pre>{{ miFormulario.value | json }}</pre>
-    <span>Directives</span>
+    <span>Existencias Errors</span>
     <pre>{{ miFormulario.controls["existencias"]?.errors | json }}</pre>
   </div>
-</div> -->
+</div>
