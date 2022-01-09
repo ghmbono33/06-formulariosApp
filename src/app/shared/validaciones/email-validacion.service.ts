@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, delay } from 'rxjs/operators';
 
 import {
   AbstractControl,
@@ -24,9 +24,13 @@ export class EmailValidacionService implements AsyncValidator {
 
     //El map nos permite transformar el valor que el observable está emitiendo
     //en cualquier otra cosa que queramos
-
+    //El operador/pipe delay nos permite hacer una espera, en este ejemplo
+    //de 1 segundo (simulando que le cuesta tiempo al backend)
     return this.http
       .get<any[]>(`http://localhost:3000/usuarios?q=${email}`)
-      .pipe(map((res) => (res.length === 0 ? null : { emailTomado: true })));
+      .pipe(
+        delay(1000),
+        map((res) => (res.length === 0 ? null : { emailTomado: true }))
+      );
   }
 }

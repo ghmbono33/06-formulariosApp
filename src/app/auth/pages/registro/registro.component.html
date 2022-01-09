@@ -28,11 +28,8 @@
             placeholder="E-mail del usuario"
             formControlName="email"
           />
-          <span *ngIf="campoNoValido('email')" class="form-text text-danger">
-            Obligatorio y debe de ser un e-mail válido
-          </span>
-          <span *ngIf="miFormulario.get('email')?.hasError('emailTomado')">
-            Este email ya está en uso.
+          <span class="form-text text-danger">
+            {{ emailErrorMsg }}
           </span>
         </div>
       </div>
@@ -83,7 +80,14 @@
       </div>
       <div class="row">
         <div class="col">
-          <button type="submit" class="btn btn-primary float-end">Crear</button>
+          <!-- estará inhabilitado si está en estado pending (debido al delay en email-validacion.service) -->
+          <button
+            type="submit"
+            class="btn btn-primary float-end"
+            [disabled]="miFormulario.pending"
+          >
+            Crear
+          </button>
         </div>
       </div>
     </form>
@@ -91,6 +95,8 @@
 </div>
 <hr />
 
+<h5>Form status</h5>
+{{ miFormulario.status | json }}
 <h5>Email</h5>
 {{ miFormulario.get("email")?.errors | json }} <br />
 <h5>Email - emailTomado</h5>

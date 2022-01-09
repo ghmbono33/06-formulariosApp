@@ -39,6 +39,19 @@ export class RegistroComponent implements OnInit {
       validators: this.vs.camposIguales('password', 'password2'),
     }
   );
+
+  get emailErrorMsg(): string {
+    let msgError = '';
+    const errorMail = this.miFormulario.get('email')?.errors;
+    if (errorMail?.['required']) {
+      msgError = 'El mail es obligatorio';
+    } else if (errorMail?.['pattern']) {
+      msgError = 'El mail es incorrecto';
+    } else if (errorMail?.['emailTomado']) {
+      msgError = 'El mail ya existe';
+    }
+    return msgError;
+  }
   constructor(
     private fb: FormBuilder,
     private vs: ValidacionesService, //servicio propio
@@ -59,6 +72,22 @@ export class RegistroComponent implements OnInit {
       this.miFormulario.get(campo)?.touched
     );
   }
+  // Método propio que funciona bien para las validaciones
+  //del e-mail. Aun así lo sustituyo por la forma de hacerlo
+  //del profe
+
+  // campoEmail(email: string): string | null {
+  //   if (this.campoNoValido(email)) {
+  //     if (this.miFormulario.get('email')?.hasError('emailTomado')) {
+  //       return 'El mail ya existe.';
+  //     } else if (this.miFormulario.get('email')?.hasError('required')) {
+  //       //Se trata del required
+  //       return 'El e-mail es requerido';
+  //     }
+  //     return 'e-mail incorrecto';
+  //   }
+  //   return '';
+  // }
 
   submitFormulario() {
     console.log(this.miFormulario.value);
