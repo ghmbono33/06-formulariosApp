@@ -14,6 +14,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./reactive/reactive.module').then((m) => m.ReactiveModule),
   },
+  {
+    //LazyLoading: con loadChildren el módulo no se cargará hasta que no se vaya a la ruta
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
   { path: '**', redirectTo: 'template' },
 ];
 

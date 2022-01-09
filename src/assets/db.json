@@ -1,0 +1,19 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "email": "mbono@gmail.com",
+      "username": "gmail2"
+    },
+    {
+      "id": 2,
+      "email": "mexplaintome@gmail.com",
+      "username": "gmail1"
+    },
+    {
+      "id": 3,
+      "email": "mbono@simetriagrupo.com",
+      "username": "simetria"
+    }
+  ]
+}
