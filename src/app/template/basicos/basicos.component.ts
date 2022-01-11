@@ -35,10 +35,6 @@ export class BasicosComponent {
   }
   precioNoValido(): boolean {
     //Devolverá true si el precio < 0
-    let precio = this.miFormulario?.form.controls['precio']?.value;
-    if (precio) {
-      return precio < 0;
-    }
-    return false;
+    return this.miFormulario?.form.controls['precio']?.value < 0;
   }
 }
